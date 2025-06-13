@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>]
+  <meta name="description" content="Conheça a história de Igor e Hellen, um casal que se ama na loucura, na garra e no sonho de um futuro juntos.">
+  <meta name="theme-color" content="#ffccd5">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nossa Galeria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 30px;
+    }
+
+    .galeria-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .galeria-item:hover {
+      transform: scale(1.03);
+    }
+
+    .galeria-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      display: none;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 10px;
+      max-width: 90%;
+      max-height: 90%;
+      overflow: auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .modal-content p {
+      margin-top: 15px;
+      font-style: italic;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Nossos Momentos 💞</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="galeria.html">Galeria</a></li>
+      <li><a href="linha-do-tempo.html">Nossa História</a></li>
+      <li><a href="carta.html">Carta de Amor</a></li>
+      <li><a href="about.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <section class="galeria">
+    <script>
+      const galeria = document.currentScript.parentElement;
+      for (let i = 1; i <= 30; i++) {
+        const filename = `fotos/fotos (${i}).jpg`;
+        const div = document.createElement('div');
+        div.className = 'galeria-item';
+        div.setAttribute('onclick', `abrirModal('${filename}', 'Nosso momento especial nº${i}')`);
+        div.innerHTML = `<img src="${filename}" alt="foto ${i}">`;
+        galeria.appendChild(div);
+      }
+    </script>
+  </section>
+
+  <div class="modal" id="modal">
+    <div class="modal-close" onclick="fecharModal()">&times;</div>
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="zoom">
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+
+  <footer>
+    Com amor eterno, de Igor para [Nome dela] – 12 de junho de 2025
+  </footer>
+
+  <script>
+    function abrirModal(src, desc) {
+      document.getElementById('modal-img').src = src;
+      document.getElementById('modal-desc').innerText = desc;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function fecharModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>
